@@ -10,6 +10,7 @@
     "lint-fix": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
     "db-install": "prisma generate && prisma migrate dev",
     "type-check": "tsc",
+    "unit-tests": "jest --passWithNoTests",
     "postinstall": "npm run db-install"
   },
   "dependencies": {
@@ -29,6 +30,7 @@
     "@types/jsonwebtoken": "^9.0.4",
     "@types/sequelize": "^4.28.17",
     "@types/validator": "^13.11.5",
+    "jest": "^29.7.0",
     "nodemon": "^3.0.1",
     "prisma": "^5.5.2",
     "ts-node": "^10.9.1",
