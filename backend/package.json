@@ -9,6 +9,7 @@
     "lint-check": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "lint-fix": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
     "db-install": "prisma generate && prisma migrate dev",
+    "type-check": "tsc",
     "postinstall": "npm run db-install"
   },
   "dependencies": {
