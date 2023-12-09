@@ -6,6 +6,11 @@ import { TypedRouter } from './helpers/typed-router.js'
 
 const prisma = usePrisma()
 
+export function isValidPassword(password) {
+    // Contains at least 8 characters and a number
+    return password.length >= 8 && password.match(/[0-9]/)
+}
+
 const typedRouter = new TypedRouter()
     .route(
         new (class AuthRegisterRoute implements TypedRouteInterface {
