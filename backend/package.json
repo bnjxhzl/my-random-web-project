@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "nodemon index.ts",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
-    "db-install": "prisma generate && prisma migrate dev --name init",
+    "db-install": "prisma generate && prisma migrate dev",
     "postinstall": "db-install"
   },
   "dependencies": {
