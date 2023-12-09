@@ -6,8 +6,8 @@
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon index.ts",
-    "fix-lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
-    "check-lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
+    "lint-check": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
+    "lint-fix": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
     "db-install": "prisma generate && prisma migrate dev",
     "postinstall": "npm run db-install"
   },
