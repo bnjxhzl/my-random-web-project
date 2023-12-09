@@ -17,7 +17,21 @@ jobs:
       - run: npm install
       - run:
           name: "Backend lint"
-          command: "npm run check-lint"
+          command: "npm run lint-check"
+          working_directory: "backend/"
+  backend-type-check:
+    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/configuration-reference/#executor-job
+    docker:
+      - image: cimg/node:lts
+    # Add steps to the job
+    # See: https://circleci.com/docs/configuration-reference/#steps
+    steps:
+      - checkout
+      - run: npm install
+      - run:
+          name: "Backend type-check"
+          command: "npm run type-check"
           working_directory: "backend/"
 
 # Orchestrate jobs using workflows
@@ -26,3 +40,4 @@ workflows:
   backend-workflow:
     jobs:
       - backend-lint
+      - backend-type-check

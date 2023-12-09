@@ -27,3 +27,4 @@ coverage
 *.njsproj
 *.sln
 *.sw?
+backend/tsconfig.tsbuildinfo
