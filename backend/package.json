@@ -8,7 +8,7 @@
     "dev": "nodemon index.ts",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "db-install": "prisma generate && prisma migrate dev",
-    "postinstall": "db-install"
+    "postinstall": "npm run db-install"
   },
   "dependencies": {
     "@prisma/client": "^5.5.2",
