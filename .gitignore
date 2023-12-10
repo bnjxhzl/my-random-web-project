@@ -28,3 +28,4 @@ coverage
 *.sln
 *.sw?
 backend/tsconfig.tsbuildinfo
+backend/release/*
