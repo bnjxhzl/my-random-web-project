@@ -1,14 +1,14 @@
 import jwt from 'jsonwebtoken'
-import { JWT_SECRET } from '../consts/secret.js'
-import { usePrisma } from '../orm/database.js'
-import type { ErrorFn, TypedReq, TypedRouteInterface } from './helpers/typed-router.js'
-import { TypedRouter } from './helpers/typed-router.js'
+import { JWT_SECRET } from '../consts/secret'
+import { usePrisma } from '../orm/database'
+import type { ErrorFn, TypedReq, TypedRouteInterface } from './helpers/typed-router'
+import { TypedRouter } from './helpers/typed-router'
 
 const prisma = usePrisma()
 
 export function isValidPassword(password: string) {
     // Contains at least 8 characters and a number
-    return password.length >= 8 && password.match(/[0-9]/)
+    return password.length >= 8 && password.match(/[0-9]/) !== null
 }
 
 const typedRouter = new TypedRouter()

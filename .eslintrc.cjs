@@ -46,8 +46,6 @@ module.exports = {
                 ],
             },
         ],
-        "import/extensions": ["error", "always"],
-
 
         // unused-imports plugin config:
         // https://www.npmjs.com/package/eslint-plugin-unused-imports
