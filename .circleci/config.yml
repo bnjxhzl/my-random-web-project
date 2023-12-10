@@ -43,7 +43,7 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: npm db-install
+      - run: npm run db-install
       - run:
           name: "Backend unit-tests"
           command: "npm run unit-tests"
