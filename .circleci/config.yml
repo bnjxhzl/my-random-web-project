@@ -56,6 +56,53 @@ jobs:
           command: "npm run unit-tests"
           working_directory: "backend/"
 
+  frontend-lint:
+    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/configuration-reference/#executor-job
+    docker:
+      - image: cimg/node:lts
+    # Add steps to the job
+    # See: https://circleci.com/docs/configuration-reference/#steps
+    steps:
+      - checkout
+      - run: npm install
+      - run:
+          name: "frontend lint"
+          command: "npm run lint-check"
+          working_directory: "frontend/"
+  frontend-type-check:
+    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/configuration-reference/#executor-job
+    docker:
+      - image: cimg/node:lts
+    # Add steps to the job
+    # See: https://circleci.com/docs/configuration-reference/#steps
+    steps:
+      - checkout
+      - run: npm install
+      - run:
+          name: "Backend bd-install"
+          command: "npm run db-install"
+          working_directory: "backend/"
+      - run:
+          name: "frontend type-check"
+          command: "npm run type-check"
+          working_directory: "frontend/"
+  frontend-unit-tests:
+    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/configuration-reference/#executor-job
+    docker:
+      - image: cimg/node:lts
+    # Add steps to the job
+    # See: https://circleci.com/docs/configuration-reference/#steps
+    steps:
+      - checkout
+      - run: npm install
+      - run:
+          name: "frontend unit-tests"
+          command: "npm run unit-tests"
+          working_directory: "frontend/"
+
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
@@ -64,3 +111,8 @@ workflows:
       - backend-lint
       - backend-type-check
       - backend-unit-tests
+  frontend-workflow:
+    jobs:
+      - frontend-lint
+      - frontend-type-check
+      - frontend-unit-tests
