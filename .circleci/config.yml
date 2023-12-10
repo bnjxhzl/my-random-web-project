@@ -30,6 +30,10 @@ jobs:
       - checkout
       - run: npm install
       - run:
+          name: "Backend bd-install"
+          command: "npm run db-install"
+          working_directory: "backend/"
+      - run:
           name: "Backend type-check"
           command: "npm run type-check"
           working_directory: "backend/"
