@@ -8,7 +8,7 @@ const prisma = usePrisma()
 
 export function isValidPassword(password: string) {
     // Contains at least 8 characters and a number
-    return password.length >= 8 && password.match(/[0-9]/)
+    return password.length >= 8 && password.match(/[0-9]/) !== null
 }
 
 const typedRouter = new TypedRouter()
