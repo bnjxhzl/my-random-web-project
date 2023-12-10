@@ -8,7 +8,6 @@
   "compilerOptions": {
     "lib": ["ESNext"],
     "target": "ES2021",
-    "verbatimModuleSyntax": true,
     "composite": true,
     "module": "ESNext",
     "moduleResolution": "Node",
