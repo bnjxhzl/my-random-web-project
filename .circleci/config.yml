@@ -123,6 +123,18 @@ jobs:
           command: npm run build
           working_directory: "frontend/"
 
+  release:
+    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/configuration-reference/#executor-job
+    docker:
+      - image: cimg/node:lts
+    # Add steps to the job
+    # See: https://circleci.com/docs/configuration-reference/#steps
+    steps:
+      - checkout
+      - run: npm install
+      - run: ls backend
+      - run: npm run semantic-release
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
@@ -140,3 +152,6 @@ workflows:
   cd-workflow:
     jobs:
       - build
+      - release:
+          requires:
+            - build
