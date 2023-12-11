@@ -124,7 +124,8 @@ jobs:
           command: npm run build
           working_directory: "frontend/"
       - run: 'RELEASE_DIRECTORY=$(date +"%Y-%m-%dT%H_%M_%S")'
-      - run: sshpass -p $PASSWORD scp backend/release $USERNAME@169.45.64.59:/root/backend/releases/$RELEASE_DIRECTORY
+      - run: sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USERNAME@169.45.64.59 "mkdir /root/backend/releases/$RELEASE_DIRECTORY"
+      - run: sshpass -p $PASSWORD scp -o StrictHostKeyChecking=no backend/release/* $USERNAME@169.45.64.59:/root/backend/releases/$RELEASE_DIRECTORY
       - run: rm /root/backend/current
       - run: ln -s /root/backend/releases/$RELEASE_DIRECTORY /root/backend/current
       - run: echo "Restart service"
