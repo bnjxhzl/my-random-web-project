@@ -111,6 +111,7 @@ jobs:
     # Add steps to the job
     # See: https://circleci.com/docs/configuration-reference/#steps
     steps:
+      - run: sudo apt-get update && sudo apt-get install -y sshpass
       - checkout
       - run: npm install
       - run:
