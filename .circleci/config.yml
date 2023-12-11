@@ -103,7 +103,7 @@ jobs:
           command: "npm run unit-tests"
           working_directory: "frontend/"
 
-  build:
+  build_and_deploy:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
     # See: https://circleci.com/docs/configuration-reference/#executor-job
     docker:
@@ -122,6 +122,12 @@ jobs:
       - run:
           command: npm run build
           working_directory: "frontend/"
+      - run: 'RELEASE_DIRECTORY=$(date +"%Y-%m-%dT%H_%M_%S")'
+      - run: sshpass -p $PASSWORD scp backend/release $USERNAME@169.45.64.59:/root/backend/releases/$RELEASE_DIRECTORY
+      - run: rm /root/backend/current
+      - run: ln -s /root/backend/releases/$RELEASE_DIRECTORY /root/backend/current
+      - run: echo "Restart service"
+
 
   release:
     # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
@@ -151,4 +157,4 @@ workflows:
   cd-workflow:
     jobs:
       - release
-      - build
+      - build_and_deploy
