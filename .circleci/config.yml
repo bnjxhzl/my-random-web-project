@@ -103,6 +103,27 @@ jobs:
           command: "npm run unit-tests"
           working_directory: "frontend/"
 
+  build:
+    # Specify the execution environment. You can specify an image from Docker Hub or use one of our convenience images from CircleCI's Developer Hub.
+    # See: https://circleci.com/docs/configuration-reference/#executor-job
+    docker:
+      - image: cimg/node:lts
+    # Add steps to the job
+    # See: https://circleci.com/docs/configuration-reference/#steps
+    steps:
+      - checkout
+      - run: npm install
+      - run:
+          command: npm run db-install
+          working_directory: "backend/"     
+      - run:
+          command: npm run build
+          working_directory: "backend/"      
+      - run:
+          command: npm run build
+          working_directory: "frontend/"
+
+
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
@@ -116,3 +137,6 @@ workflows:
       - frontend-lint
       - frontend-type-check
       - frontend-unit-tests
+  cd-workflow:
+    jobs:
+      - build
