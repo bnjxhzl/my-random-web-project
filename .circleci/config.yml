@@ -133,7 +133,6 @@ jobs:
     steps:
       - checkout
       - run: npm install
-      - run: ls backend
       - run: npm run semantic-release
 
 # Orchestrate jobs using workflows
@@ -151,7 +150,5 @@ workflows:
       - frontend-unit-tests
   cd-workflow:
     jobs:
+      - release
       - build
-      - release:
-          requires:
-            - build
