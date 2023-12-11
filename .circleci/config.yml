@@ -128,7 +128,7 @@ jobs:
           sshpass -p $PASSWORD scp -o StrictHostKeyChecking=no -r backend/release/* $USERNAME@169.45.64.59:/root/backend/releases/$RELEASE_DIRECTORY
           sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USERNAME@169.45.64.59 "rm /root/backend/current || true"
           sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USERNAME@169.45.64.59 "ln -s /root/backend/releases/$RELEASE_DIRECTORY /root/backend/current"   
-          echo "Restart service"
+          sudo systemctl restart backend-service
 
 
   release:
