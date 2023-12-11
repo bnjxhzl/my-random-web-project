@@ -129,7 +129,15 @@ jobs:
           sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USERNAME@169.45.64.59 "rm /root/backend/current || true"
           sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USERNAME@169.45.64.59 "ln -s /root/backend/releases/$RELEASE_DIRECTORY /root/backend/current"  
       - run: | 
+          RELEASE_DIRECTORY=$(date +"%Y%m%d-%H%M%S")
+          sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USERNAME@169.45.64.59 "mkdir /root/frontend/releases/$RELEASE_DIRECTORY"
+          sshpass -p $PASSWORD scp -o StrictHostKeyChecking=no -r frontend/dist/* $USERNAME@169.45.64.59:/root/frontend/releases/$RELEASE_DIRECTORY
+          sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USERNAME@169.45.64.59 "rm /root/frontend/current || true"
+          sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USERNAME@169.45.64.59 "ln -s /root/frontend/releases/$RELEASE_DIRECTORY /root/frontend/current"  
+      - run: | 
           sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USERNAME@169.45.64.59 "sudo systemctl restart backend-service"   
+      - run: | 
+          sshpass -p $PASSWORD ssh -o StrictHostKeyChecking=no $USERNAME@169.45.64.59 "sudo systemctl restart frontend-service"   
 
 
   release:
