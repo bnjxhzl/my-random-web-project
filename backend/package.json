@@ -6,7 +6,7 @@
   "main": "index.ts",
   "scripts": {
     "dev": "nodemon index.ts",
-    "build": "rollup -c",
+    "build": "rollup -c && cp -r orm/prisma release",
     "lint-check": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
     "lint-fix": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts",
     "db-install": "prisma generate && prisma migrate dev",
