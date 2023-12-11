@@ -20,7 +20,7 @@ const taskModalOpen = ref(false)
 
     <VLayout class="vh100">
         <VMain class="d-flex flex-column align-center">
-            <h1>The Sherlock and Watson App</h1>
+            <h1>The Boom and Watson App</h1>
             <div class="flex-1-1 d-flex flex-column align-center justify-center">
                 <UserAuthentication v-if="!isAuthenticated" />
                 <UserTasks v-else />
